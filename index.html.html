@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nanny.lk - Sri Lanka's Premier Nanny & Childcare Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            DEFAULT: '#1B365D',
+                            dark: '#122543',
+                            light: '#284B7C'
+                        },
+                        sage: {
+                            DEFAULT: '#7DA06B',
+                            dark: '#658455',
+                            light: '#98B887',
+                            soft: '#EBF2E8'
+                        },
+                        cream: {
+                            DEFAULT: '#FDFBF7',
+                            dark: '#F4EFE6'
+                        },
+                        charcoal: '#2D3748'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7;
+            color: #2D3748;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 30px -5px rgba(27, 54, 93, 0.08);
+        }
+        .card-shadow-hover:hover {
+            box-shadow: 0 20px 40px -5px rgba(27, 54, 93, 0.15);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col smooth-scroll antialiased selection:bg-sage selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-navy-dark text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex justify-between items-center max-w-full overflow-hidden">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="truncate"><i class="fa-solid fa-shield-halved text-sage-light mr-2"></i> 100% Background-Checked Caregivers in Sri Lanka</span>
+            <div class="hidden md:flex space-x-4 items-center text-xs">
+                <span><i class="fa-solid fa-phone mr-1"></i> +94 11 234 5678</span>
+                <span><i class="fa-brands fa-whatsapp mr-1 text-sage-light"></i> +94 77 123 4567</span>
+                <span class="bg-sage text-white px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Colombo • Kandy • Galle • Gampaha</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header class="bg-navy text-white sticky top-0 z-40 shadow-lg transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" onclick="showCategory('all'); return false;" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full bg-sage flex items-center justify-center text-white text-xl font-bold shadow-md group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-extrabold tracking-tight font-heading flex items-center">
+                        Nanny<span class="text-sage-light">.lk</span>
+                    </span>
+                    <span class="text-[10px] text-gray-300 tracking-wider uppercase font-semibold">Sri Lanka Caregiver Network</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-sm font-medium">
+                <button onclick="showCategory('all')" id="nav-all" class="nav-btn px-3 py-2 rounded-lg text-white hover:bg-navy-light transition-colors active-nav">Home</button>
+                <button onclick="showCategory('infant')" id="nav-infant" class="nav-btn px-3 py-2 rounded-lg text-gray-200 hover:bg-navy-light transition-colors">Infant Care <span class="text-[10px] opacity-75">(2-12m)</span></button>
+                <button onclick="showCategory('toddler')" id="nav-toddler" class="nav-btn px-3 py-2 rounded-lg text-gray-200 hover:bg-navy-light transition-colors">Toddler <span class="text-[10px] opacity-75">(1-5y)</span></button>
+                <button onclick="showCategory('afterschool')" id="nav-afterschool" class="nav-btn px-3 py-2 rounded-lg text-gray-200 hover:bg-navy-light transition-colors">After-School <span class="text-[10px] opacity-75">(5y+)</span></button>
+                <button onclick="showCategory('livein')" id="nav-livein" class="nav-btn px-3 py-2 rounded-lg text-gray-200 hover:bg-navy-light transition-colors">Live-In</button>
+                <a href="#how-it-works" class="px-3 py-2 rounded-lg text-gray-200 hover:bg-navy-light transition-colors">How It Works</a>
+            </nav>
+
+            <!-- Desktop CTA Buttons -->
+            <div class="hidden sm:flex items-center space-x-3">
+                <button onclick="openRegistrationModal()" class="text-xs font-semibold px-3.5 py-2 border border-gray-400 hover:border-white text-gray-200 hover:text-white rounded-lg transition-all">
+                    Register as Nanny
+                </button>
+                <a href="#caregivers-section" class="bg-sage hover:bg-sage-dark text-white font-semibold text-xs sm:text-sm px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all flex items-center space-x-2">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Find a Nanny</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="lg:hidden text-2xl text-white focus:outline-none p-1">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-navy-dark border-t border-navy-light px-4 pt-3 pb-6 space-y-3">
+            <button onclick="showCategory('all'); toggleMobileMenu();" class="block w-text-left w-full text-left py-2 px-3 rounded hover:bg-navy-light text-white font-medium">🏠 Home / All Nannies</button>
+            <button onclick="showCategory('infant'); toggleMobileMenu();" class="block w-text-left w-full text-left py-2 px-3 rounded hover:bg-navy-light text-gray-200 font-medium">👶 Infant Care (2-12 Months)</button>
+            <button onclick="showCategory('toddler'); toggleMobileMenu();" class="block w-text-left w-full text-left py-2 px-3 rounded hover:bg-navy-light text-gray-200 font-medium">🧸 Toddler & Preschool (1-5 Years)</button>
+            <button onclick="showCategory('afterschool'); toggleMobileMenu();" class="block w-text-left w-full text-left py-2 px-3 rounded hover:bg-navy-light text-gray-200 font-medium">📚 After-School Care (5+ Years)</button>
+            <button onclick="showCategory('livein'); toggleMobileMenu();" class="block w-text-left w-full text-left py-2 px-3 rounded hover:bg-navy-light text-gray-200 font-medium">🏠 Live-In & Full-Time Nannies</button>
+            <a href="#how-it-works" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded hover:bg-navy-light text-gray-200 font-medium">⚙️ How It Works</a>
+            <div class="pt-2 border-t border-navy-light flex flex-col space-y-2">
+                <button onclick="openRegistrationModal(); toggleMobileMenu();" class="w-full text-center py-2 bg-navy-light text-white rounded font-medium text-sm">Register as a Nanny</button>
+                <a href="#caregivers-section" onclick="toggleMobileMenu()" class="w-full text-center py-2.5 bg-sage text-white rounded-lg font-bold text-sm">Find a Nanny Now</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- HERO SECTION -->
+        <section class="relative bg-gradient-to-b from-navy via-navy to-navy-dark text-white pt-12 pb-24 md:pt-16 md:pb-32 px-4 overflow-hidden">
+            <!-- Decorative Elements -->
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-sage/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-10 w-72 h-72 bg-navy-light/30 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="container mx-auto max-w-6xl relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- Hero Left Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full text-sage-light text-xs font-semibold border border-white/15">
+                            <i class="fa-solid fa-award text-sage"></i>
+                            <span>Sri Lanka's #1 Verified Childcare Network</span>
+                        </div>
+                        
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold leading-tight tracking-tight">
+                            Trusted Care for Your <span class="text-sage-light underline decoration-sage decoration-wavy decoration-2">Little Ones</span> in Sri Lanka
+                        </h1>
+                        
+                        <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                            Connect with verified, background-checked caregivers for infant care, toddler development, homework assistance, and full-time household childcare.
+                        </p>
+
+                        <!-- Key Value Bullets -->
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs sm:text-sm pt-2 text-gray-200 max-w-xl mx-auto lg:mx-0">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-sage"></i>
+                                <span>Police Verified</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-sage"></i>
+                                <span>CPR & First-Aid</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-sage"></i>
+                                <span>Bridge Negotiation</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                            <a href="#caregivers-section" class="w-full sm:w-auto bg-sage hover:bg-sage-dark text-white font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 text-center text-base">
+                                Browse Verified Nannies
+                            </a>
+                            <a href="#how-it-works" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3.5 rounded-xl border border-white/20 transition-all text-center text-base">
+                                How Nanny.lk Works
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hero Right Image / Visual -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+                            <div class="absolute inset-0 bg-sage rounded-3xl transform rotate-3 scale-95 opacity-20 blur-md"></div>
+                            <div class="relative rounded-3xl overflow-hidden border-4 border-white/20 shadow-2xl bg-navy-light/40">
+                                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" 
+                                     alt="Sri Lankan Nanny with Child" 
+                                     class="w-full h-[380px] sm:h-[420px] object-cover object-center"
+                                     onerror="this.src='https://placehold.co/800x600/1B365D/FFFFFF?text=Nanny.lk+Caregiver'">
+                                
+                                <!-- Floating Badge on Hero Image -->
+                                <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl text-charcoal shadow-xl flex items-center space-x-3 border border-sage/20">
+                                    <div class="w-10 h-10 rounded-full bg-sage-soft flex items-center justify-center text-sage text-lg font-bold flex-shrink-0">
+                                        <i class="fa-solid fa-user-shield"></i>
+                                    </div>
+                                    <div class="text-xs">
+                                        <div class="font-bold text-navy">Direct Contact Bridge Guarantee</div>
+                                        <div class="text-gray-600">We manage fair pay & terms after nanny accepts!</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FLOATING SPECIALIZED SEARCH WIDGET -->
+        <div class="container mx-auto px-4 -mt-16 sm:-mt-20 relative z-30 max-w-5xl">
+            <div class="bg-white rounded-2xl p-4 sm:p-6 card-shadow border border-gray-100">
+                <div class="flex items-center space-x-2 pb-4 mb-4 border-b border-gray-100 text-navy font-bold text-sm sm:text-base">
+                    <i class="fa-solid fa-sliders text-sage text-lg"></i>
+                    <span>Find Your Perfect Sri Lankan Caregiver Match</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Child Age Group Filter -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">
+                            <i class="fa-solid fa-baby text-sage mr-1"></i> Child's Age Group
+                        </label>
+                        <select id="filter-age" onchange="applyFilters()" class="w-full bg-cream rounded-xl border border-gray-200 px-3 py-2.5 text-sm text-charcoal font-medium focus:outline-none focus:ring-2 focus:ring-sage">
+                            <option value="all">All Ages (0 - 12 Years)</option>
+                            <option value="infant">Infant (2–12 Months)</option>
+                            <option value="toddler">Toddler (1–5 Years)</option>
+                            <option value="afterschool">School Age (5+ Years)</option>
+                        </select>
+                    </div>
+
+                    <!-- Service Schedule Filter -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">
+                            <i class="fa-solid fa-clock text-sage mr-1"></i> Service Schedule
+                        </label>
+                        <select id="filter-schedule" onchange="applyFilters()" class="w-full bg-cream rounded-xl border border-gray-200 px-3 py-2.5 text-sm text-charcoal font-medium focus:outline-none focus:ring-2 focus:ring-sage">
+                            <option value="all">Any Schedule</option>
+                            <option value="Full-Time">Full-Time (Daily)</option>
+                            <option value="Live-In">Live-In</option>
+                            <option value="Part-Time">Part-Time / Hourly</option>
+                            <option value="After-School">After-School</option>
+                        </select>
+                    </div>
+
+                    <!-- Location Filter -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">
+                            <i class="fa-solid fa-location-dot text-sage mr-1"></i> District / City
+                        </label>
+                        <select id="filter-location" onchange="applyFilters()" class="w-full bg-cream rounded-xl border border-gray-200 px-3 py-2.5 text-sm text-charcoal font-medium focus:outline-none focus:ring-2 focus:ring-sage">
+                            <option value="all">All Locations in Sri Lanka</option>
+                            <option value="Colombo">Colombo & Suburbs</option>
+                            <option value="Rajagiriya">Rajagiriya / Nugegoda</option>
+                            <option value="Kandy">Kandy District</option>
+                            <option value="Galle">Galle / Southern</option>
+                            <option value="Gampaha">Gampaha / Negombo</option>
+                        </select>
+                    </div>
+
+                    <!-- Action Search Button -->
+                    <div class="flex items-end">
+                        <button onclick="applyFilters(); scrollToNannies();" class="w-full bg-sage hover:bg-sage-dark text-white font-bold py-2.5 px-4 rounded-xl shadow transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>Search Nannies</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRUST & PLATFORM IMPACT COUNTER -->
+        <section class="py-12 my-6">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                    
+                    <div class="bg-white p-5 rounded-2xl text-center border border-gray-100 card-shadow">
+                        <div class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy font-heading">500+</div>
+                        <div class="text-xs sm:text-sm text-gray-600 font-medium mt-1">Families Served in Sri Lanka</div>
+                        <div class="text-[10px] text-sage font-bold mt-1">99.2% Positive Feedback</div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl text-center border border-gray-100 card-shadow">
+                        <div class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-sage font-heading">120+</div>
+                        <div class="text-xs sm:text-sm text-gray-600 font-medium mt-1">Verified Active Nannies</div>
+                        <div class="text-[10px] text-navy font-bold mt-1">Strict Vetting Process</div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl text-center border border-gray-100 card-shadow">
+                        <div class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy font-heading">15+</div>
+                        <div class="text-xs sm:text-sm text-gray-600 font-medium mt-1">Partner Childcare Agencies</div>
+                        <div class="text-[10px] text-sage font-bold mt-1">Local & Institutional</div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl text-center border border-gray-100 card-shadow">
+                        <div class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-sage font-heading">98.4%</div>
+                        <div class="text-xs sm:text-sm text-gray-600 font-medium mt-1">Request Acceptance Rate</div>
+                        <div class="text-[10px] text-navy font-bold mt-1">Fast Response Bridge</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CHILDCARE CATEGORIES GRID -->
+        <section class="py-10 bg-white border-y border-gray-100">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-sage font-bold text-xs uppercase tracking-widest">Specialized Childcare</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy mt-1">Tailored Care for Every Stage of Childhood</h2>
+                    <p class="text-gray-600 text-sm mt-2">Nanny.lk caregivers specialize in specific age milestones, development needs, and household routines.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Category Card 1 -->
+                    <div onclick="showCategory('infant')" class="cursor-pointer group bg-cream hover:bg-white p-6 rounded-2xl border border-gray-200 card-shadow-hover transition-all duration-300">
+                        <div class="w-14 h-14 rounded-2xl bg-sage-soft text-sage flex items-center justify-center text-2xl mb-4 group-hover:bg-sage group-hover:text-white transition-colors">
+                            👶
+                        </div>
+                        <h3 class="text-lg font-bold text-navy group-hover:text-sage transition-colors">Newborn & Infant Care</h3>
+                        <p class="text-xs text-sage font-semibold mb-2">Ages 2 to 12 Months</p>
+                        <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                            Feeding schedules, sensory stimulation, sleep tracking, diaper hygiene, and gentle infant supervision.
+                        </p>
+                        <span class="text-xs font-bold text-navy flex items-center group-hover:translate-x-1 transition-transform">
+                            View Infant Nannies <i class="fa-solid fa-arrow-right ml-1 text-sage"></i>
+                        </span>
+                    </div>
+
+                    <!-- Category Card 2 -->
+                    <div onclick="showCategory('toddler')" class="cursor-pointer group bg-cream hover:bg-white p-6 rounded-2xl border border-gray-200 card-shadow-hover transition-all duration-300">
+                        <div class="w-14 h-14 rounded-2xl bg-sage-soft text-sage flex items-center justify-center text-2xl mb-4 group-hover:bg-sage group-hover:text-white transition-colors">
+                            🧸
+                        </div>
+                        <h3 class="text-lg font-bold text-navy group-hover:text-sage transition-colors">Toddler & Preschool Care</h3>
+                        <p class="text-xs text-sage font-semibold mb-2">Ages 1 to 5 Years</p>
+                        <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                            Motor skills activities, creative play, child meal prep, language development, and active safety supervision.
+                        </p>
+                        <span class="text-xs font-bold text-navy flex items-center group-hover:translate-x-1 transition-transform">
+                            View Toddler Nannies <i class="fa-solid fa-arrow-right ml-1 text-sage"></i>
+                        </span>
+                    </div>
+
+                    <!-- Category Card 3 -->
+                    <div onclick="showCategory('afterschool')" class="cursor-pointer group bg-cream hover:bg-white p-6 rounded-2xl border border-gray-200 card-shadow-hover transition-all duration-300">
+                        <div class="w-14 h-14 rounded-2xl bg-sage-soft text-sage flex items-center justify-center text-2xl mb-4 group-hover:bg-sage group-hover:text-white transition-colors">
+                            📚
+                        </div>
+                        <h3 class="text-lg font-bold text-navy group-hover:text-sage transition-colors">After-School & Homework</h3>
+                        <p class="text-xs text-sage font-semibold mb-2">Ages 5+ Years</p>
+                        <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                            School drop-off/pick-up assistance, primary homework help, healthy afternoon snack prep, and structured routines.
+                        </p>
+                        <span class="text-xs font-bold text-navy flex items-center group-hover:translate-x-1 transition-transform">
+                            View School-Age Nannies <i class="fa-solid fa-arrow-right ml-1 text-sage"></i>
+                        </span>
+                    </div>
+
+                    <!-- Category Card 4 -->
+                    <div onclick="showCategory('livein')" class="cursor-pointer group bg-cream hover:bg-white p-6 rounded-2xl border border-gray-200 card-shadow-hover transition-all duration-300">
+                        <div class="w-14 h-14 rounded-2xl bg-sage-soft text-sage flex items-center justify-center text-2xl mb-4 group-hover:bg-sage group-hover:text-white transition-colors">
+                            🏠
+                        </div>
+                        <h3 class="text-lg font-bold text-navy group-hover:text-sage transition-colors">Live-In & Full-Time</h3>
+                        <p class="text-xs text-sage font-semibold mb-2">Dedicated Family Support</p>
+                        <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                            Round-the-clock dedicated childcare, live-in arrangements, full daily schedule management, and complete family peace of mind.
+                        </p>
+                        <span class="text-xs font-bold text-navy flex items-center group-hover:translate-x-1 transition-transform">
+                            View Live-In Nannies <i class="fa-solid fa-arrow-right ml-1 text-sage"></i>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CAREGIVER CATALOG SECTION -->
+        <section id="caregivers-section" class="py-12 bg-cream">
+            <div class="container mx-auto px-4 max-w-6xl">
+                
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-gray-200">
+                    <div>
+                        <span class="text-sage font-bold text-xs uppercase tracking-widest">Verified Profiles</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy mt-1" id="catalog-title">Available Nannies in Sri Lanka</h2>
+                        <p class="text-xs sm:text-sm text-gray-600 mt-1">Review background-checked nanny profiles and send direct service requests.</p>
+                    </div>
+
+                    <!-- Quick Category Pills -->
+                    <div class="mt-4 md:mt-0 flex flex-wrap gap-2 text-xs">
+                        <button onclick="showCategory('all')" class="cat-pill active-pill px-3 py-1.5 rounded-full font-semibold transition-all">All Nannies</button>
+                        <button onclick="showCategory('infant')" class="cat-pill px-3 py-1.5 rounded-full font-semibold bg-white text-gray-700 hover:bg-sage hover:text-white transition-all">Infant Care</button>
+                        <button onclick="showCategory('toddler')" class="cat-pill px-3 py-1.5 rounded-full font-semibold bg-white text-gray-700 hover:bg-sage hover:text-white transition-all">Toddler Care</button>
+                        <button onclick="showCategory('afterschool')" class="cat-pill px-3 py-1.5 rounded-full font-semibold bg-white text-gray-700 hover:bg-sage hover:text-white transition-all">After-School</button>
+                        <button onclick="showCategory('livein')" class="cat-pill px-3 py-1.5 rounded-full font-semibold bg-white text-gray-700 hover:bg-sage hover:text-white transition-all">Live-In</button>
+                    </div>
+                </div>
+
+                <!-- Caregiver Grid Container -->
+                <div id="caregivers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic Caregiver Profile Cards will be rendered here via JS -->
+                </div>
+
+                <!-- Empty State Message -->
+                <div id="no-results" class="hidden text-center py-12 bg-white rounded-2xl border border-dashed border-gray-300">
+                    <div class="text-4xl text-gray-300 mb-2"><i class="fa-solid fa-user-slash"></i></div>
+                    <h3 class="text-lg font-bold text-navy">No Caregivers Match Your Filter Criteria</h3>
+                    <p class="text-xs text-gray-500 mt-1">Try resetting your location or child age group filter.</p>
+                    <button onclick="resetFilters()" class="mt-4 bg-navy text-white text-xs font-semibold px-4 py-2 rounded-lg">Reset Filters</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS SECTION -->
+        <section id="how-it-works" class="py-16 bg-navy text-white relative overflow-hidden">
+            <div class="container mx-auto px-4 max-w-6xl relative z-10">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-sage-light font-bold text-xs uppercase tracking-widest">Transparent Bridge Model</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold mt-1">How Nanny.lk Connects Families & Caregivers</h2>
+                    <p class="text-gray-300 text-xs sm:text-sm mt-2">
+                        We charge a small request matchmaking fee to facilitate requests. We do not take a cut from the nanny's hourly rate—we act as your official agreement bridge.
+                    </p>
+                </div>
+
+                <!-- 4 Steps Process Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+                    
+                    <!-- Step 1 -->
+                    <div class="bg-navy-light/60 border border-white/10 rounded-2xl p-6 text-center relative flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-sage text-white font-extrabold flex items-center justify-center mx-auto mb-4 text-sm shadow-md">1</div>
+                            <h3 class="font-bold text-base mb-2">Search & Select</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Filter by child age, location in Sri Lanka, skills (CPR, English), and service duration.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-sage-light font-semibold">
+                            Free Profile Browsing
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-navy-light/60 border border-white/10 rounded-2xl p-6 text-center relative flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-sage text-white font-extrabold flex items-center justify-center mx-auto mb-4 text-sm shadow-md">2</div>
+                            <h3 class="font-bold text-base mb-2">Submit Request & Fee</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Enter your exact requirement details and pay a nominal LKR 1,500 match request fee.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-sage-light font-semibold">
+                            Platform Matchmaking Fee
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-navy-light/60 border border-white/10 rounded-2xl p-6 text-center relative flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-sage text-white font-extrabold flex items-center justify-center mx-auto mb-4 text-sm shadow-md">3</div>
+                            <h3 class="font-bold text-base mb-2">Nanny Accept / Decline</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Caregiver reviews your location and schedule, then accepts or declines the placement.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-sage-light font-semibold">
+                            2-4 Hours Response Time
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="bg-navy-light/60 border border-white/10 rounded-2xl p-6 text-center relative flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-sage text-white font-extrabold flex items-center justify-center mx-auto mb-4 text-sm shadow-md">4</div>
+                            <h3 class="font-bold text-base mb-2">Nanny.lk Bridge Terms</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Once accepted, Nanny.lk assists in negotiating exact period, duty scope, and direct salary terms.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-sage-light font-semibold">
+                            End-to-End Contract Bridge
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SAFETY & VERIFICATION SPOTLIGHT -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    <div class="lg:col-span-5 space-y-4">
+                        <span class="text-sage font-bold text-xs uppercase tracking-widest">Child Protection First</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy">The 4 Pillars of Nanny Vetting in Sri Lanka</h2>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            Leaving your young children in someone else's hands requires absolute certainty. Every nanny registered on Nanny.lk undergoes a rigorous 4-stage verification process before being listed.
+                        </p>
+                        
+                        <div class="pt-2">
+                            <div class="bg-sage-soft p-4 rounded-xl border border-sage/20 text-xs text-navy font-semibold flex items-start space-x-3">
+                                <i class="fa-solid fa-triangle-exclamation text-sage text-base mt-0.5"></i>
+                                <span>Note: Nannies provide developmental, supervisory, and basic early childhood care. They are not medical practitioners.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        
+                        <!-- Pillar 1 -->
+                        <div class="bg-cream p-5 rounded-2xl border border-gray-200">
+                            <div class="w-10 h-10 rounded-xl bg-navy text-white flex items-center justify-center mb-3">
+                                <i class="fa-solid fa-id-card"></i>
+                            </div>
+                            <h4 class="font-bold text-navy text-sm">1. National ID & Police Clearance</h4>
+                            <p class="text-xs text-gray-600 mt-1">Verified Grama Niladhari certificate, NIC copy, and Sri Lanka Police background verification.</p>
+                        </div>
+
+                        <!-- Pillar 2 -->
+                        <div class="bg-cream p-5 rounded-2xl border border-gray-200">
+                            <div class="w-10 h-10 rounded-xl bg-sage text-white flex items-center justify-center mb-3">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <h4 class="font-bold text-navy text-sm">2. Early Childhood Training</h4>
+                            <p class="text-xs text-gray-600 mt-1">Diplomas or vocational certifications in Childcare, Early Childhood Education, or Nursing Support.</p>
+                        </div>
+
+                        <!-- Pillar 3 -->
+                        <div class="bg-cream p-5 rounded-2xl border border-gray-200">
+                            <div class="w-10 h-10 rounded-xl bg-sage text-white flex items-center justify-center mb-3">
+                                <i class="fa-solid fa-kit-medical"></i>
+                            </div>
+                            <h4 class="font-bold text-navy text-sm">3. Basic First-Aid & CPR Awareness</h4>
+                            <p class="text-xs text-gray-600 mt-1">Certified training in infant choking hazards, basic emergency protocols, and child safety rules.</p>
+                        </div>
+
+                        <!-- Pillar 4 -->
+                        <div class="bg-cream p-5 rounded-2xl border border-gray-200">
+                            <div class="w-10 h-10 rounded-xl bg-navy text-white flex items-center justify-center mb-3">
+                                <i class="fa-solid fa-user-check"></i>
+                            </div>
+                            <h4 class="font-bold text-navy text-sm">4. Verified Family References</h4>
+                            <p class="text-xs text-gray-600 mt-1">Direct phone & written reference checks from previous households in Sri Lanka served by the nanny.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PARENT TESTIMONIALS SECTION -->
+        <section class="py-16 bg-cream border-t border-gray-200">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-sage font-bold text-xs uppercase tracking-widest">Parent Testimonials</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy mt-1">Trusted by Families Across Sri Lanka</h2>
+                    <p class="text-xs sm:text-sm text-gray-600 mt-1">Read how Nanny.lk helped working mothers and busy parents find compassionate childcare.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Review Card 1 -->
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200 card-shadow flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 text-xs space-x-1 mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-xs text-gray-700 leading-relaxed italic mb-4">
+                                "Finding an infant nanny for my 5-month-old daughter in Rajagiriya was terrifying until we used Nanny.lk. Kumari was amazing, background checked, and the bridge team helped us agree on fair working hours smoothly."
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-3 border-t border-gray-100">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" class="w-9 h-9 rounded-full object-cover" alt="Parent">
+                            <div>
+                                <div class="font-bold text-xs text-navy">Dilini & Ruwan M.</div>
+                                <div class="text-[10px] text-gray-500">Rajagiriya • Infant Care</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 2 -->
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200 card-shadow flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 text-xs space-x-1 mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-xs text-gray-700 leading-relaxed italic mb-4">
+                                "As a doctor working long shifts at Kandy Teaching Hospital, I needed reliable after-school assistance for my 7-year-old son. The matchmaking process took under 24 hours. Highly recommended!"
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-3 border-t border-gray-100">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="w-9 h-9 rounded-full object-cover" alt="Parent">
+                            <div>
+                                <div class="font-bold text-xs text-navy">Dr. Sarah F.</div>
+                                <div class="text-[10px] text-gray-500">Kandy • After-School Care</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 3 -->
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200 card-shadow flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 text-xs space-x-1 mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-xs text-gray-700 leading-relaxed italic mb-4">
+                                "The request matchmaking fee structure is very honest. You don't get charged inflated monthly fees. We hired a live-in nanny for our 2 toddlers in Galle and Nanny.lk handled the agreement professionally."
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-3 border-t border-gray-100">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="w-9 h-9 rounded-full object-cover" alt="Parent">
+                            <div>
+                                <div class="font-bold text-xs text-navy">Dinesh & Keshani P.</div>
+                                <div class="text-[10px] text-gray-500">Galle • Live-In Care</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-dark text-white text-xs pt-12 pb-8 border-t border-navy-light">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-white/10">
+                
+                <!-- Brand Info -->
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-sage flex items-center justify-center text-white text-sm font-bold">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <span class="text-xl font-bold font-heading">Nanny<span class="text-sage-light">.lk</span></span>
+                    </div>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Sri Lanka's dedicated platform connecting families with background-verified, compassionate caregivers for infants, toddlers, and school-age children.
+                    </p>
+                    <div class="flex space-x-3 text-sm text-gray-300 pt-2">
+                        <a href="#" class="hover:text-sage"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="hover:text-sage"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-sage"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Category Links -->
+                <div>
+                    <h4 class="font-bold text-sm text-white mb-3">Childcare Services</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" onclick="showCategory('infant'); return false;" class="hover:text-sage-light">Infant Care (2-12 Mos)</a></li>
+                        <li><a href="#" onclick="showCategory('toddler'); return false;" class="hover:text-sage-light">Toddler & Preschool (1-5 Yrs)</a></li>
+                        <li><a href="#" onclick="showCategory('afterschool'); return false;" class="hover:text-sage-light">After-School Homework Support</a></li>
+                        <li><a href="#" onclick="showCategory('livein'); return false;" class="hover:text-sage-light">Live-In Dedicated Nannies</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company & Trust -->
+                <div>
+                    <h4 class="font-bold text-sm text-white mb-3">Platform & Safety</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#how-it-works" class="hover:text-sage-light">How It Works (Bridge Model)</a></li>
+                        <li><a href="#" onclick="openRegistrationModal()" class="hover:text-sage-light">Register as a Nanny</a></li>
+                        <li><a href="#" class="hover:text-sage-light">Verification Guidelines</a></li>
+                        <li><a href="#" class="hover:text-sage-light">Privacy Policy & Terms</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sri Lanka Contact Details -->
+                <div>
+                    <h4 class="font-bold text-sm text-white mb-3">Contact Bridge Team</h4>
+                    <ul class="space-y-2.5 text-gray-300">
+                        <li class="flex items-start space-x-2">
+                            <i class="fa-solid fa-location-dot text-sage mt-1"></i>
+                            <span>Level 4, Access Towers, Colombo 02, Sri Lanka</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-phone text-sage"></i>
+                            <span>+94 11 234 5678 / +94 77 123 4567</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-envelope text-sage"></i>
+                            <span>support@nanny.lk</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Disclaimer & Copyright -->
+            <div class="pt-6 flex flex-col md:flex-row items-center justify-between text-gray-400 text-[11px] gap-4">
+                <p>© 2026 Nanny.lk Technologies (Pvt) Ltd. All rights reserved.</p>
+                <p class="text-center md:text-right max-w-xl text-gray-400">
+                    <strong>Disclaimer:</strong> Nanny.lk is a marketplace and matchmaking bridge platform. Nannies provide supervisory, developmental, and early childhood care. They do not perform medical procedures.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE BOOKING / REQUEST MODAL -->
+    <div id="booking-modal" class="fixed inset-0 bg-navy/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-xl w-full card-shadow overflow-hidden relative animate-fade-in my-8">
+            
+            <!-- Modal Header -->
+            <div class="bg-navy text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <img id="modal-nanny-img" src="" class="w-10 h-10 rounded-full object-cover border-2 border-sage" alt="Nanny Profile">
+                    <div>
+                        <h3 class="font-bold text-base leading-tight" id="modal-nanny-name">Request Caregiver</h3>
+                        <p class="text-xs text-sage-light" id="modal-nanny-meta">Colombo • LKR 1,200/hr</p>
+                    </div>
+                </div>
+                <button onclick="closeBookingModal()" class="text-gray-300 hover:text-white text-xl p-1">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Multi-Step Form Body -->
+            <div class="p-6">
+                
+                <!-- STEP 1: PARENT DETAILS & REQUIREMENTS -->
+                <div id="modal-step-1">
+                    <div class="mb-4 bg-sage-soft p-3 rounded-xl border border-sage/20 text-xs text-navy">
+                        <i class="fa-solid fa-circle-info text-sage mr-1"></i>
+                        <strong>How request works:</strong> You submit request details + pay LKR 1,500 matchmaking request fee. If nanny accepts, Nanny.lk negotiates exact schedule and direct pay on your behalf.
+                    </div>
+
+                    <form id="request-form" onsubmit="goToPaymentStep(event)" class="space-y-3 text-xs">
+                        <div>
+                            <label class="block font-semibold text-gray-700 mb-1">Parent Full Name *</label>
+                            <input type="text" required placeholder="e.g. Kasun Fernando" class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sage outline-none">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block font-semibold text-gray-700 mb-1">Phone Number *</label>
+                                <input type="tel" required placeholder="077 123 4567" class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sage outline-none">
+                            </div>
+                            <div>
+                                <label class="block font-semibold text-gray-700 mb-1">Location / City *</label>
+                                <input type="text" required placeholder="e.g. Rajagiriya, Colombo" class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sage outline-none">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block font-semibold text-gray-700 mb-1">Child's Age *</label>
+                                <select required class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sage outline-none">
+                                    <option value="">Select Age</option>
+                                    <option>Infant (2 - 12 Months)</option>
+                                    <option>Toddler (1 - 3 Years)</option>
+                                    <option>Preschool (3 - 5 Years)</option>
+                                    <option>School Age (5+ Years)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-semibold text-gray-700 mb-1">Service Type *</label>
+                                <select required class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sage outline-none">
+                                    <option>Full-Time Daily</option>
+                                    <option>Part-Time / Hourly</option>
+                                    <option>Live-In Care</option>
+                                    <option>After-School Care</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-semibold text-gray-700 mb-1">Special Requirements / Child Routine Notes</label>
+                            <textarea rows="2" placeholder="e.g. Feeding schedules, allergy alerts, preferred English speaking nanny..." class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sage outline-none"></textarea>
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="w-full bg-sage hover:bg-sage-dark text-white font-bold py-3 rounded-xl shadow text-xs uppercase tracking-wider flex items-center justify-center space-x-2">
+                                <span>Proceed to Platform Request Fee (LKR 1,500)</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- STEP 2: SIMULATED PAYMENT FOR MATCHMAKING FEE -->
+                <div id="modal-step-2" class="hidden">
+                    <div class="text-center mb-4">
+                        <div class="w-12 h-12 bg-sage-soft text-sage rounded-full flex items-center justify-center mx-auto text-xl mb-2">
+                            <i class="fa-solid fa-credit-card"></i>
+                        </div>
+                        <h4 class="font-bold text-navy text-sm">Platform Request Fee Payment</h4>
+                        <p class="text-xs text-gray-500">Fixed Matchmaking & Vetting Verification Fee</p>
+                    </div>
+
+                    <div class="bg-cream p-4 rounded-xl border border-gray-200 mb-4 text-xs space-y-2">
+                        <div class="flex justify-between text-gray-600">
+                            <span>Requesting Caregiver:</span>
+                            <span class="font-bold text-navy" id="pay-nanny-name">Kumari Wickramasinghe</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Service Matching Guarantee:</span>
+                            <span class="font-semibold text-sage">100% Refund if Caregiver Declines</span>
+                        </div>
+                        <div class="flex justify-between text-navy font-bold pt-2 border-t border-gray-300 text-sm">
+                            <span>Total Platform Fee:</span>
+                            <span class="text-sage">LKR 1,500</span>
+                        </div>
+                    </div>
+
+                    <form onsubmit="processSimulatedPayment(event)" class="space-y-3 text-xs">
+                        <div>
+                            <label class="block font-semibold text-gray-700 mb-1">Cardholder Name</label>
+                            <input type="text" required value="Kasun Fernando" class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2 text-xs">
+                        </div>
+                        <div>
+                            <label class="block font-semibold text-gray-700 mb-1">Simulated Card Number (Demo)</label>
+                            <input type="text" required value="4532 •••• •••• 8892" class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2 text-xs">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block font-semibold text-gray-700 mb-1">Expiry</label>
+                                <input type="text" required value="08/28" class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block font-semibold text-gray-700 mb-1">CVV</label>
+                                <input type="text" required value="321" class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2 text-xs">
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex space-x-2">
+                            <button type="button" onclick="backToStep1()" class="w-1/3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2.5 rounded-xl text-xs">Back</button>
+                            <button type="submit" id="pay-btn" class="w-2/3 bg-navy hover:bg-navy-dark text-white font-bold py-2.5 rounded-xl text-xs shadow flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-lock"></i>
+                                <span>Pay LKR 1,500 & Place Request</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- STEP 3: REAL-TIME SIMULATED ACCEPTANCE & BRIDGE STATUS -->
+                <div id="modal-step-3" class="hidden text-center py-4 space-y-4">
+                    <div id="status-spinner" class="w-14 h-14 border-4 border-sage border-t-transparent rounded-full animate-spin mx-auto"></div>
+                    <div id="status-icon" class="hidden w-16 h-16 bg-sage text-white rounded-full flex items-center justify-center mx-auto text-2xl shadow-lg">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <h4 class="font-extrabold text-navy text-lg" id="status-title">Transmitting Request to Caregiver...</h4>
+                    <p class="text-xs text-gray-600 max-w-sm mx-auto leading-relaxed" id="status-desc">
+                        Your request fee is processed. Notifying nanny of your location and requirements...
+                    </p>
+
+                    <!-- Dynamic Progress Timeline -->
+                    <div class="bg-cream p-4 rounded-2xl border border-gray-200 text-left text-xs space-y-3">
+                        <div id="time-1" class="flex items-center space-x-3 text-navy font-semibold">
+                            <i class="fa-solid fa-spinner animate-spin text-sage"></i>
+                            <span>1. Request Fee Received (LKR 1,500)</span>
+                        </div>
+                        <div id="time-2" class="flex items-center space-x-3 text-gray-400">
+                            <i class="fa-regular fa-circle"></i>
+                            <span>2. Caregiver Reviewing Schedule & Location</span>
+                        </div>
+                        <div id="time-3" class="flex items-center space-x-3 text-gray-400">
+                            <i class="fa-regular fa-circle"></i>
+                            <span>3. Caregiver Acceptance Status</span>
+                        </div>
+                        <div id="time-4" class="flex items-center space-x-3 text-gray-400">
+                            <i class="fa-regular fa-circle"></i>
+                            <span>4. Nanny.lk Bridge Team Term Negotiation</span>
+                        </div>
+                    </div>
+
+                    <div id="modal-success-actions" class="hidden pt-2">
+                        <button onclick="closeBookingModal()" class="bg-navy hover:bg-navy-dark text-white font-bold px-6 py-2.5 rounded-xl text-xs shadow">
+                            Done & Return to Home
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- NANNY REGISTRATION MODAL -->
+    <div id="register-modal" class="fixed inset-0 bg-navy/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 card-shadow relative">
+            <button onclick="closeRegistrationModal()" class="absolute top-4 right-4 text-gray-400 hover:text-navy text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-4">
+                <div class="w-12 h-12 bg-sage-soft text-sage rounded-full flex items-center justify-center mx-auto text-xl mb-2">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <h3 class="font-bold text-navy text-lg">Join Nanny.lk Network</h3>
+                <p class="text-xs text-gray-500">Apply to become a verified caregiver in Sri Lanka</p>
+            </div>
+
+            <form onsubmit="submitNannyRegistration(event)" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-semibold text-gray-700 mb-1">Full Name</label>
+                    <input type="text" required placeholder="e.g. Sanduni Perera" class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2">
+                </div>
+                <div>
+                    <label class="block font-semibold text-gray-700 mb-1">Phone Number</label>
+                    <input type="tel" required placeholder="07X XXX XXXX" class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2">
+                </div>
+                <div>
+                    <label class="block font-semibold text-gray-700 mb-1">District / City in Sri Lanka</label>
+                    <input type="text" required placeholder="e.g. Colombo 07, Kandy" class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2">
+                </div>
+                <div>
+                    <label class="block font-semibold text-gray-700 mb-1">Primary Age Expertise</label>
+                    <select required class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2">
+                        <option>Infant Care (2-12 Months)</option>
+                        <option>Toddler Supervision (1-5 Years)</option>
+                        <option>After-School Care (5+ Years)</option>
+                        <option>All Age Groups</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-semibold text-gray-700 mb-1">Qualifications / Certificates</label>
+                    <textarea placeholder="e.g. Early childhood diploma, CPR trained, 4 years experience..." class="w-full bg-cream border border-gray-300 rounded-lg px-3 py-2" rows="2"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-sage hover:bg-sage-dark text-white font-bold py-2.5 rounded-xl text-xs uppercase tracking-wider">
+                    Submit Application for Background Check
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        // MOCK SRI LANKAN CAREGIVER DATA
+        const caregiversData = [
+            {
+                id: 1,
+                name: "Kumari Wickramasinghe",
+                photo: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80",
+                location: "Colombo",
+                area: "Colombo 07 & Rajagiriya",
+                ageGroup: "infant",
+                ageGroupLabel: "Infant Care (2-12 Mos)",
+                schedule: "Full-Time",
+                experience: "6 Years Experience",
+                rating: 4.9,
+                reviewsCount: 28,
+                rate: "LKR 1,200 / hr",
+                badges: ["ID Verified", "First Aid & CPR", "Infant Specialist"],
+                description: "Specialized in newborn hygiene, feeding routines, and early sensory play. Certified in infant CPR."
+            },
+            {
+                id: 2,
+                name: "Dilhani Perera",
+                photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80",
+                location: "Rajagiriya",
+                area: "Nugegoda & Maharagama",
+                ageGroup: "toddler",
+                ageGroupLabel: "Toddler (1-5 Yrs)",
+                schedule: "Full-Time",
+                experience: "4 Years Experience",
+                rating: 4.8,
+                reviewsCount: 19,
+                rate: "LKR 1,000 / hr",
+                badges: ["Police Clearance", "Early Childhood Dip."],
+                description: "Enthusiastic toddler caregiver focusing on creative craft play, motor skills, and speech development."
+            },
+            {
+                id: 3,
+                name: "Sunethra Jayawardena",
+                photo: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=400&q=80",
+                location: "Kandy",
+                area: "Kandy Town & Peradeniya",
+                ageGroup: "afterschool",
+                ageGroupLabel: "After-School (5+ Yrs)",
+                schedule: "After-School",
+                experience: "8 Years Experience",
+                rating: 5.0,
+                reviewsCount: 34,
+                rate: "LKR 950 / hr",
+                badges: ["ID Verified", "English Medium", "Homework Helper"],
+                description: "Former primary assistant teacher. Excellent at supervising homework, school pick-ups, and evening routines."
+            },
+            {
+                id: 4,
+                name: "Sanduni Fernando",
+                photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+                location: "Galle",
+                area: "Galle Fort & Karapitiya",
+                ageGroup: "livein",
+                ageGroupLabel: "Live-In / Full-Time",
+                schedule: "Live-In",
+                experience: "5 Years Experience",
+                rating: 4.9,
+                reviewsCount: 22,
+                rate: "LKR 75,000 / month",
+                badges: ["Police Cleared", "Live-In Certified", "First Aid"],
+                description: "Dedicated live-in nanny experienced with multiple children households, daily meals, and routine management."
+            },
+            {
+                id: 5,
+                name: "Ayesha Rahuman",
+                photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80",
+                location: "Gampaha",
+                area: "Gampaha & Negombo",
+                ageGroup: "infant",
+                ageGroupLabel: "Infant Care (2-12 Mos)",
+                schedule: "Part-Time",
+                experience: "7 Years Experience",
+                rating: 4.8,
+                reviewsCount: 16,
+                rate: "LKR 1,100 / hr",
+                badges: ["Nursing Dip.", "ID Verified"],
+                description: "Diploma in nursing support. Highly gentle with premature babies, feeding logs, and infant sleep training."
+            },
+            {
+                id: 6,
+                name: "Malkanthi Silva",
+                photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+                location: "Colombo",
+                area: "Battaramulla & Malabe",
+                ageGroup: "toddler",
+                ageGroupLabel: "Toddler (1-5 Yrs)",
+                schedule: "Full-Time",
+                experience: "9 Years Experience",
+                rating: 5.0,
+                reviewsCount: 41,
+                rate: "LKR 1,300 / hr",
+                badges: ["Police Clearance", "First Aid", "Nutritional Prep"],
+                description: "Senior caregiver. Excellent meal preparation for picky toddlers and outdoor safety supervision."
+            }
+        ];
+
+        let selectedNanny = null;
+
+        // RENDER CAREGIVERS GRID
+        function renderCaregivers(data) {
+            const grid = document.getElementById('caregivers-grid');
+            const noResults = document.getElementById('no-results');
+            
+            grid.innerHTML = '';
+
+            if (data.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            data.forEach(nanny => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl border border-gray-200 card-shadow card-shadow-hover transition-all duration-300 flex flex-col justify-between overflow-hidden";
+                
+                card.innerHTML = `
+                    <div class="p-5">
+                        <!-- Top Profile Info -->
+                        <div class="flex items-start space-x-4">
+                            <div class="relative">
+                                <img src="${nanny.photo}" alt="${nanny.name}" class="w-16 h-16 rounded-2xl object-cover border-2 border-sage" onerror="this.src='https://placehold.co/150x150/1B365D/FFFFFF?text=Nanny'">
+                                <span class="absolute -bottom-1 -right-1 bg-sage text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center">
+                                    <i class="fa-solid fa-check text-[8px] mr-0.5"></i> Vetted
+                                </span>
+                            </div>
+
+                            <div class="flex-grow">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-bold text-navy text-base leading-tight">${nanny.name}</h3>
+                                </div>
+                                <div class="text-xs text-gray-500 font-medium mt-0.5">
+                                    <i class="fa-solid fa-location-dot text-sage mr-1"></i> ${nanny.area}
+                                </div>
+                                <div class="flex items-center space-x-2 mt-1.5 text-xs">
+                                    <span class="bg-sage-soft text-sage-dark font-bold px-2 py-0.5 rounded-md text-[10px]">
+                                        ${nanny.ageGroupLabel}
+                                    </span>
+                                    <span class="text-gray-400">•</span>
+                                    <span class="text-gray-600 font-medium text-[11px]">${nanny.experience}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <p class="text-xs text-gray-600 mt-3.5 leading-relaxed line-clamp-2">
+                            "${nanny.description}"
+                        </p>
+
+                        <!-- Badges -->
+                        <div class="flex flex-wrap gap-1.5 mt-3">
+                            ${nanny.badges.map(b => `<span class="bg-cream text-charcoal border border-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded-md"><i class="fa-solid fa-shield text-sage text-[9px] mr-1"></i>${b}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Card Footer & Pricing -->
+                    <div class="bg-cream px-5 py-3 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <div class="text-[10px] text-gray-500 font-semibold uppercase">Caregiver Rate</div>
+                            <div class="font-extrabold text-navy text-sm">${nanny.rate}</div>
+                        </div>
+
+                        <button onclick="openBookingModal(${nanny.id})" class="bg-sage hover:bg-sage-dark text-white font-bold text-xs px-4 py-2 rounded-xl shadow transition-all flex items-center space-x-1.5">
+                            <span>Request Nanny</span>
+                            <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // FILTER LOGIC
+        function applyFilters() {
+            const age = document.getElementById('filter-age').value;
+            const schedule = document.getElementById('filter-schedule').value;
+            const location = document.getElementById('filter-location').value;
+
+            let filtered = caregiversData.filter(nanny => {
+                let matchAge = (age === 'all' || nanny.ageGroup === age);
+                let matchSchedule = (schedule === 'all' || nanny.schedule.toLowerCase().includes(schedule.toLowerCase()));
+                let matchLocation = (location === 'all' || nanny.location.toLowerCase() === location.toLowerCase());
+                return matchAge && matchSchedule && matchLocation;
+            });
+
+            renderCaregivers(filtered);
+        }
+
+        function showCategory(cat) {
+            document.getElementById('filter-age').value = cat;
+            applyFilters();
+            
+            // Update Active Nav Styles
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('bg-navy-light', 'text-white'));
+            const activeNav = document.getElementById(`nav-${cat}`);
+            if(activeNav) activeNav.classList.add('bg-navy-light', 'text-white');
+
+            scrollToNannies();
+        }
+
+        function resetFilters() {
+            document.getElementById('filter-age').value = 'all';
+            document.getElementById('filter-schedule').value = 'all';
+            document.getElementById('filter-location').value = 'all';
+            renderCaregivers(caregiversData);
+        }
+
+        function scrollToNannies() {
+            document.getElementById('caregivers-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // MOBILE MENU TOGGLE
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // MODAL INTERACTION LOGIC
+        function openBookingModal(nannyId) {
+            selectedNanny = caregiversData.find(n => n.id === nannyId) || caregiversData[0];
+            
+            document.getElementById('modal-nanny-img').src = selectedNanny.photo;
+            document.getElementById('modal-nanny-name').innerText = `Request ${selectedNanny.name}`;
+            document.getElementById('modal-nanny-meta').innerText = `${selectedNanny.area} • ${selectedNanny.rate}`;
+            document.getElementById('pay-nanny-name').innerText = selectedNanny.name;
+
+            // Reset Steps
+            document.getElementById('modal-step-1').classList.remove('hidden');
+            document.getElementById('modal-step-2').classList.add('hidden');
+            document.getElementById('modal-step-3').classList.add('hidden');
+
+            document.getElementById('booking-modal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+
+        function goToPaymentStep(e) {
+            e.preventDefault();
+            document.getElementById('modal-step-1').classList.add('hidden');
+            document.getElementById('modal-step-2').classList.remove('hidden');
+        }
+
+        function backToStep1() {
+            document.getElementById('modal-step-2').classList.add('hidden');
+            document.getElementById('modal-step-1').classList.remove('hidden');
+        }
+
+        function processSimulatedPayment(e) {
+            e.preventDefault();
+            document.getElementById('modal-step-2').classList.add('hidden');
+            document.getElementById('modal-step-3').classList.remove('hidden');
+
+            // SIMULATE REAL-TIME MATCHMAKING ACCEPTANCE PROCESS
+            setTimeout(() => {
+                document.getElementById('time-2').className = "flex items-center space-x-3 text-navy font-semibold";
+                document.getElementById('time-2').querySelector('i').className = "fa-solid fa-spinner animate-spin text-sage";
+                document.getElementById('status-title').innerText = "Caregiver Reviewing Placement...";
+            }, 1500);
+
+            setTimeout(() => {
+                document.getElementById('time-2').querySelector('i').className = "fa-solid fa-circle-check text-sage";
+                document.getElementById('time-3').className = "flex items-center space-x-3 text-navy font-semibold";
+                document.getElementById('time-3').querySelector('i').className = "fa-solid fa-circle-check text-sage";
+                document.getElementById('status-title').innerText = "Request Accepted by Nanny!";
+                document.getElementById('status-desc').innerText = `${selectedNanny.name} has accepted your request. Nanny.lk Bridge Team is initiating terms & pay schedule agreement.`;
+            }, 3200);
+
+            setTimeout(() => {
+                document.getElementById('time-4').className = "flex items-center space-x-3 text-sage font-bold";
+                document.getElementById('time-4').querySelector('i').className = "fa-solid fa-handshake text-sage text-base";
+                
+                document.getElementById('status-spinner').classList.add('hidden');
+                document.getElementById('status-icon').classList.remove('hidden');
+                document.getElementById('status-title').innerText = "Bridge Negotiation Activated!";
+                document.getElementById('modal-success-actions').classList.remove('hidden');
+            }, 4800);
+        }
+
+        // NANNY REGISTRATION MODAL
+        function openRegistrationModal() {
+            document.getElementById('register-modal').classList.remove('hidden');
+        }
+
+        function closeRegistrationModal() {
+            document.getElementById('register-modal').classList.add('hidden');
+        }
+
+        function submitNannyRegistration(e) {
+            e.preventDefault();
+            alert("Thank you! Your application has been submitted to the Nanny.lk Vetting Team. We will contact you within 24 hours for police clearance verification.");
+            closeRegistrationModal();
+        }
+
+        // INITIALIZE APP ON WINDOW LOAD
+        window.onload = function() {
+            renderCaregivers(caregiversData);
+        };
+    </script>
+</body>
+</html>
